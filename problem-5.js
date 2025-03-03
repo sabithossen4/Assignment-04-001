@@ -1,25 +1,21 @@
-function  calculateWatchTime( times ) {
-  let sum=0;
-      
-     for(const num of times){
-      if( typeof num ==='number'|| Array.isArray(num)){
-        sum=sum+num;
-       let m=sum/60;
-        
-       let second=sum%60;
-        
-       let minit=parseInt(m)%60;
-      
-       let hour=parseInt(m)/60;
-        result={hour,minit,second}     
-         
-      }    
-      else{
-        return "Invalid";      
-      }         
-  }    
-  return result;   
-}
+
+function calculateWatchTime(times) {
+  if (!Array.isArray(times)) {
+  return "Invalid";
+  }
+  let totalSeconds = 0;
+  for (const time of times) {
+  if (typeof time !== 'number') {
+  return "Invalid";
+  }
+  // totalSeconds += time; অথবা --
+   totalSeconds =totalSeconds + time;
+  }
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = Math.floor(totalSeconds % 60);
+  return { hour: hours, minute: minutes, second: seconds };
+  }
 const mone=  [];
 const ashOut=calculateWatchTime(mone);
 console.log(ashOut);   
